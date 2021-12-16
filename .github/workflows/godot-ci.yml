@@ -39,7 +39,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_KEY }}
           CHANNEL: windows
-          ITCH_GAME: gwj40
+          ITCH_GAME: egg
           ITCH_USER: willowblade
           PACKAGE: build/windows
 
@@ -75,7 +75,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_KEY }}
           CHANNEL: linux
-          ITCH_GAME: gwj40
+          ITCH_GAME: egg
           ITCH_USER: willowblade
           PACKAGE: build/linux
 
@@ -111,6 +111,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_KEY }}
           CHANNEL: web
-          ITCH_GAME: gwj40
+          ITCH_GAME: egg
           ITCH_USER: willowblade
           PACKAGE: build/web
