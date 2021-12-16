@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/canon-in-d-major-by-kevin-macleod-from-filmmusic-io.mp3-0fe20205110b2a1585514a8ca55d7e59.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/canon-in-d-major-by-kevin-macleod-from-filmmusic-io.mp3"
+dest_files=[ "res://.import/canon-in-d-major-by-kevin-macleod-from-filmmusic-io.mp3-0fe20205110b2a1585514a8ca55d7e59.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

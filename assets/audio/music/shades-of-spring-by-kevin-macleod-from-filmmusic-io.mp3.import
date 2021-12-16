@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/shades-of-spring-by-kevin-macleod-from-filmmusic-io.mp3-5b5348f6d26625fa45769ee9b93478f6.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/shades-of-spring-by-kevin-macleod-from-filmmusic-io.mp3"
+dest_files=[ "res://.import/shades-of-spring-by-kevin-macleod-from-filmmusic-io.mp3-5b5348f6d26625fa45769ee9b93478f6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

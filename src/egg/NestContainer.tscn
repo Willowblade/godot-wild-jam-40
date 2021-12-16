@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/egg/ClickableTexture.gd" type="Script" id=1]
+[ext_resource path="res://assets/objects/nest/nest-back.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/nest/nest-front.png" type="Texture" id=3]
+[ext_resource path="res://src/egg/NestContainer.gd" type="Script" id=4]
+
+[node name="NestContainer" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Nest" type="Node2D" parent="."]
+script = ExtResource( 1 )
+clickable_texture_path = NodePath("Back")
+
+[node name="Back" type="Sprite" parent="Nest"]
+texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
+
+[node name="Front" type="Sprite" parent="Nest"]
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="Nest"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Nest/Area2D"]
+polygon = PoolVector2Array( -26, -6, -16, -11, 1, -13, 21, -10, 24, -4, 23, 9, 9, 13, -10, 13, -24, 8 )
+
+[node name="NestPlaceholder" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.286275 )
+
+[node name="Back" type="Sprite" parent="NestPlaceholder"]
+texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
+
+[node name="Front" type="Sprite" parent="NestPlaceholder"]
+texture = ExtResource( 3 )

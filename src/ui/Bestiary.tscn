@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/ui/Bestiary.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://src/ui/PageContainer.tscn" type="PackedScene" id=3]
+
+[node name="Bestiary" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoLeftButtonContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 40.0
+margin_right = 104.0
+margin_bottom = 600.0
+
+[node name="GoLeftButton" type="TextureButton" parent="HBoxContainer/GoLeftButtonContainer"]
+margin_top = 268.0
+margin_right = 64.0
+margin_bottom = 332.0
+texture_normal = ExtResource( 2 )
+
+[node name="BookContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 112.0
+margin_right = 912.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 800, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PageContainer" type="HBoxContainer" parent="HBoxContainer/BookContainer"]
+margin_right = 800.0
+margin_bottom = 600.0
+grow_horizontal = 0
+custom_constants/separation = 0
+
+[node name="LeftPage" parent="HBoxContainer/BookContainer/PageContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 400.0
+margin_bottom = 600.0
+
+[node name="RightPage" parent="HBoxContainer/BookContainer/PageContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 400.0
+margin_right = 800.0
+margin_bottom = 600.0
+side = "RIGHT"
+
+[node name="GoRightContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 920.0
+margin_right = 984.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoRightButton" type="TextureButton" parent="HBoxContainer/GoRightContainer"]
+margin_top = 268.0
+margin_right = 64.0
+margin_bottom = 332.0
+texture_normal = ExtResource( 2 )

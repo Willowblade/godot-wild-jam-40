@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/egg/Moisturizer.gd" type="Script" id=1]
+[ext_resource path="res://assets/objects/moisturizer.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/moisturizer-pressed.png" type="Texture" id=3]
+
+[node name="Moisturizer" type="Node2D"]
+light_mask = 4
+z_index = 6
+script = ExtResource( 1 )
+clickable_texture_path = NodePath("Moisturizer")
+
+[node name="Moisturizer" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="MoisturizerPressed" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="MoisturizerArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MoisturizerArea"]
+polygon = PoolVector2Array( -8, 15, -8, -4, -4, -9, -7, -11, -11, -5, -10, -11, -15, -14, -10, -19, 5, -19, 8, -15, 8, 16, 5, 19, -4, 19 )
+
+[node name="Sprays" type="Node2D" parent="."]
+position = Vector2( -15, -15 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

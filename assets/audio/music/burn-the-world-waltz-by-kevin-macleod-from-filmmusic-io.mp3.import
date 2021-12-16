@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/burn-the-world-waltz-by-kevin-macleod-from-filmmusic-io.mp3-b96a24ec90fc7a263b7c8fa8ccdd9d54.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/burn-the-world-waltz-by-kevin-macleod-from-filmmusic-io.mp3"
+dest_files=[ "res://.import/burn-the-world-waltz-by-kevin-macleod-from-filmmusic-io.mp3-b96a24ec90fc7a263b7c8fa8ccdd9d54.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
