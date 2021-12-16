@@ -28,7 +28,10 @@ onready var lamp_start_location = lamp.position
 
 
 const LAMP_MIN = 40
-const LAMP_MAX = 120
+const LAMP_MAX = 100
+const MAX_TEMPERATURE = 50.0
+const MIN_TEMPERATURE = 30.0
+const OFF_TEMPERATURE = 10.0
 
 func _ready():
 	egg_state = egg_states.IDLE
@@ -61,14 +64,12 @@ func egg_fall():
 	egg_state = egg_states.FALLEN
 
 func get_temperature() -> float:
-	var MAX_TEMPERATURE = 50
-	var MIN_TEMPERATURE = 20
-	var OFF_TEMPERATURE = 10
 	if lamp.off_button.visible:
+
 		var distance = lamp.cap.global_position.distance_to(egg_start_location)
 		# TODO can be more complex but need to determine bounds
-		var temperature = 50 - (distance - LAMP_MIN) / 2
-
+		var temperature = MAX_TEMPERATURE - (distance - LAMP_MIN) / (LAMP_MAX - LAMP_MIN) * (MAX_TEMPERATURE - MIN_TEMPERATURE)
+		print(temperature)
 		return temperature
 	else:
 		return OFF_TEMPERATURE
