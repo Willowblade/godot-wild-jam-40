@@ -64,6 +64,7 @@ script = ExtResource( 1 )
 MAX_SIMULTANEOUS_EFFECTS = 20
 
 [node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 autoplay = true
 
 [node name="SecondBackgroundPlayer" type="AudioStreamPlayer" parent="."]
