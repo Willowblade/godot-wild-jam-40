@@ -17,7 +17,10 @@ __meta__ = {
 [node name="PageTexture" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 400, 600 )
 texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

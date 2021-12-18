@@ -26,7 +26,8 @@ func _process(delta):
 		humidity = incubator.get_humidity()
 		music = incubator.radio.get_song()
 
-	egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate
+		if incubator.egg:
+			egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate
 
 	if egg_growth >= 100.0:
 		incubator.egg_finished()
