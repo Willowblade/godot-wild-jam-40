@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Creature_Chick.png-37fef5ac868d2ba735c53dfb5f551340.stex"
+path="res://.import/octosquid.png-7f9535feea59fed0562e6bdd308c2181.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/eggs/Creature_Chick.png"
-dest_files=[ "res://.import/Creature_Chick.png-37fef5ac868d2ba735c53dfb5f551340.stex" ]
+source_file="res://assets/creature/octosquid.png"
+dest_files=[ "res://.import/octosquid.png-7f9535feea59fed0562e6bdd308c2181.stex" ]
 
 [params]
 
