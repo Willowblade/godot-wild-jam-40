@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Incubator
 
 var dragging: Node2D = null
 var egg_state = 'idle'
@@ -26,6 +26,8 @@ var egg_pickup_rotation: float = 0.0
 onready var egg_start_location = $EggContainer.position
 onready var lamp_start_location = lamp.position
 
+var humidity = 0.0
+const HUMIDITY_DECREASE_RATE = 2
 
 const LAMP_MIN = 40
 const LAMP_MAX = 100
@@ -33,30 +35,38 @@ const MAX_TEMPERATURE = 50.0
 const MIN_TEMPERATURE = 30.0
 const OFF_TEMPERATURE = 10.0
 
+const WIGGLE_TIME = 8.0
+const WIGGLE_VARIATION = 2.0
+
+
 func _ready():
+	$WiggleTimer.connect("timeout", self, "_on_wiggle_timer_timeout")
+	$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
+	$WiggleTimer.start()
+
+	GlobalData.incubator = self
 	egg_state = egg_states.IDLE
 	egg.global_position = egg_start_location
 	egg.rotation_degrees = 0.0
 	placeholder_egg.global_position = egg_start_location
 	update_bases()
 
-
 func update_bases():
 	for base in $Bases.get_children():
-		if GlobalData.base == base.base_type.to_lower():
+		if nest.nest_type == base.base_type.to_lower():
 			base.hide()
 		else:
 			base.show()
 
 func update_base(new_type: String):
 	var lower_type = new_type.to_lower()
-	GlobalData.base = lower_type
+
 	if lower_type == "nest":
 		$Nest.set_basic_nest()
 	elif lower_type == "pillow":
 		$Nest.set_luxury_cushion()
-	update_bases()
 
+	update_bases()
 
 func egg_fall():
 	$AnimationPlayer.play("egg-fall")
@@ -65,16 +75,24 @@ func egg_fall():
 
 func get_temperature() -> float:
 	if lamp.off_button.visible:
-
 		var distance = lamp.cap.global_position.distance_to(egg_start_location)
 		# TODO can be more complex but need to determine bounds
 		var temperature = MAX_TEMPERATURE - (distance - LAMP_MIN) / (LAMP_MAX - LAMP_MIN) * (MAX_TEMPERATURE - MIN_TEMPERATURE)
-		print(temperature)
 		return temperature
 	else:
 		return OFF_TEMPERATURE
 
+func get_base() -> String:
+	return nest.nest_type
+
+func get_humidity() -> float:
+	return humidity
+
 func _process(delta):
+	humidity -= HUMIDITY_DECREASE_RATE * delta
+	if humidity < 0.0:
+		humidity =  min(max(0.0, humidity), 100.0)
+
 	if Input.is_action_just_pressed("ui_accept"):
 		egg_fall()
 
@@ -94,8 +112,6 @@ func _process(delta):
 					var lamp_rotation = egg_start_location.angle_to_point(mouse_position)
 					lamp.set_cap_rotation(rad2deg(lamp_rotation) - 90)
 
-
-
 		if dragging is Egg:
 			egg.rotation_degrees = 0.0
 			egg.global_position = get_local_mouse_position() + Vector2(0, 5)
@@ -114,7 +130,6 @@ func _process(delta):
 
 	GlobalData.temperature = get_temperature()
 
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		if egg.mouse_overlaps():
@@ -131,6 +146,8 @@ func _input(event):
 							moisturizer_placeholder.hide()
 						else:
 							moisturizer.spray()
+							humidity += 12.5
+							humidity =  min(max(0.0, humidity), 100.0)
 					else:
 						if !dragging:
 							dragging = moisturizer
@@ -196,10 +213,10 @@ func _input(event):
 				if dragging in [pillow_replacement, nest_replacement]:
 					dragging.position = Vector2()
 					dragging.z_index = 2
-					print($BaseDropoff.get_overlapping_areas())
+
 					if dragging.get_node("Area2D") in $BaseDropoff.get_overlapping_areas():
-						print("Nest is in body!")
 						update_base(dragging.get_parent().base_type)
+
 					dragging = null
 
 		if event.button_index == BUTTON_RIGHT:
@@ -210,3 +227,16 @@ func _input(event):
 					moisturizer_placeholder.hide()
 
 
+func _on_wiggle_timer_timeout():
+	if egg_state == egg_states.IDLE:
+		egg.wiggle()
+
+	$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
+	$WiggleTimer.start()
+
+
+func egg_finished():
+	if egg.type == "chicken":
+		egg.set_chode_egg()
+	elif egg.type == "chode":
+		egg.set_chicken_egg()

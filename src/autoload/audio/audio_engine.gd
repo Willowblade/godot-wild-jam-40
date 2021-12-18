@@ -74,6 +74,7 @@ func play_background_music(track_name: String, timing):
 			_play_background(stream, timestamp)
 
 func _play_background(stream, position):
+	print("Playing background song!")
 	current_background_player.stream = stream
 	current_background_player.play(position)
 

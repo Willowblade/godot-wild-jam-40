@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/egg/Incubator.gd" type="Script" id=1]
 [ext_resource path="res://src/egg/Nest.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/objects/shelf-left.png" type="Texture" id=8]
 [ext_resource path="res://assets/objects/shelf-right.png" type="Texture" id=9]
 [ext_resource path="res://src/egg/Radio.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/egg/MoistureMeter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/egg/NestContainer.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -132,3 +133,9 @@ polygon = PoolVector2Array( -18, 36, -29, 25, -21, 14, 16, 14, 26, 22, 21, 35, 0
 
 [node name="Radio" parent="." instance=ExtResource( 10 )]
 position = Vector2( 124, -69 )
+
+[node name="MoistureMeter" parent="." instance=ExtResource( 11 )]
+position = Vector2( 56, -35 )
+z_index = -8
+
+[node name="WiggleTimer" type="Timer" parent="."]

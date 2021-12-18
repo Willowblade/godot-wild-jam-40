@@ -42,6 +42,7 @@ rotation = -0.0010727
 texture = ExtResource( 3 )
 texture_scale = 0.15
 color = Color( 0.945098, 0.831373, 0.317647, 0.615686 )
+range_z_min = -6
 range_z_max = 5
 shadow_enabled = true
 

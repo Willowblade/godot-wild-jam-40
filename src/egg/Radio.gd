@@ -23,6 +23,9 @@ func toggle_power():
 	else:
 		activate()
 
+func get_song():
+	return songs[current_index]
+
 func deactivate():
 	enabled = false
 	AudioEngine.stop_background_music()

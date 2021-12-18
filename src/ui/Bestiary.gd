@@ -1,4 +1,5 @@
 extends Control
+class_name Bestiary
 
 onready var left_page_container = $HBoxContainer/BookContainer/PageContainer/LeftPage
 onready var right_page_container = $HBoxContainer/BookContainer/PageContainer/RightPage
