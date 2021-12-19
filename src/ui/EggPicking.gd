@@ -2,7 +2,7 @@ extends Control
 class_name EggPicking
 
 
-var possibilities = ["chicken", "octosquid", "mouse", "willow"]
+
 var eggs = ["chicken", "octosquid", "chicken"]
 
 var ready = false
@@ -20,7 +20,7 @@ func _ready():
 func shuffle_eggs():
 	eggs = []
 	var unknown_eggs = []
-	for possibility in possibilities:
+	for possibility in Database.BESTIARY.keys():
 		if GlobalData.unlocked_creature(possibility):
 			pass
 		else:

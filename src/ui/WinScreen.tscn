@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/creature/unicorn.png" type="Texture" id=2]
+[ext_resource path="res://assets/creature/molebear.png" type="Texture" id=3]
+[ext_resource path="res://src/ui/WinScreen.gd" type="Script" id=4]
+[ext_resource path="res://assets/background/better-background.png" type="Texture" id=5]
+[ext_resource path="res://assets/creature/chick.png" type="Texture" id=6]
+[ext_resource path="res://assets/creature/moose.png" type="Texture" id=7]
+[ext_resource path="res://assets/creature/mouse.png" type="Texture" id=8]
+[ext_resource path="res://assets/creature/octosquid.png" type="Texture" id=9]
+[ext_resource path="res://assets/creature/sapling.png" type="Texture" id=10]
+[ext_resource path="res://assets/creature/willow.png" type="Texture" id=11]
+
+[node name="EggPicking" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -52.0
+margin_top = -43.0
+margin_right = 12.0
+margin_bottom = 12.0
+rect_scale = Vector2( 18.306, 12.929 )
+color = Color( 0, 0, 0, 0.815686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Eggs" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 37.0
+margin_bottom = 37.0
+custom_constants/separation = -2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstEgg" type="TextureButton" parent="Eggs"]
+margin_left = 7.0
+margin_right = 135.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="SecondEgg" type="TextureButton" parent="Eggs"]
+margin_left = 133.0
+margin_right = 261.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg" type="TextureButton" parent="Eggs"]
+margin_left = 259.0
+margin_right = 387.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg2" type="TextureButton" parent="Eggs"]
+margin_left = 385.0
+margin_right = 513.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg3" type="TextureButton" parent="Eggs"]
+margin_left = 511.0
+margin_right = 639.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg4" type="TextureButton" parent="Eggs"]
+margin_left = 637.0
+margin_right = 765.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg5" type="TextureButton" parent="Eggs"]
+margin_left = 763.0
+margin_right = 891.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="ThirdEgg6" type="TextureButton" parent="Eggs"]
+margin_left = 889.0
+margin_right = 1017.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 128, 0 )
+texture_normal = ExtResource( 11 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+margin_left = -1017.0
+margin_right = 3.0
+margin_bottom = 77.0
+rect_scale = Vector2( 3, 3 )
+text = "You did it!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = -1036.0
+margin_top = 73.0
+margin_right = -16.0
+margin_bottom = 150.0
+rect_scale = Vector2( 3, 3 )
+text = "You filled out Eggble"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info2" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 214.0
+margin_right = 1022.0
+margin_bottom = 291.0
+text = "We hope you enjoyed it! Was it hard? Complaining can be cozy too..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info3" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 435.0
+margin_right = 1022.0
+margin_bottom = 512.0
+text = "Want to continue playing?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 511, 302 )
+scale = Vector2( 3, 3 )
+z_index = -1
+texture = ExtResource( 5 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 436.0
+margin_top = 498.0
+margin_right = 598.0
+margin_bottom = 551.0
+text = "DUH"
