@@ -27,21 +27,43 @@ margin_right = 123.0
 margin_bottom = 17.0
 text = "EGGSBY CONTROLS"
 
-[node name="Left" type="HBoxContainer" parent="HotkeysContainer"]
+[node name="Controls" type="HBoxContainer" parent="HotkeysContainer"]
 margin_left = 203.0
-margin_right = 265.0
+margin_right = 332.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HotkeysContainer/Left"]
+[node name="Label" type="Label" parent="HotkeysContainer/Controls"]
+margin_top = 3.0
+margin_right = 95.0
+margin_bottom = 17.0
+text = "CANCEL/PAUSE"
+
+[node name="RebindableAction" parent="HotkeysContainer/Controls" instance=ExtResource( 2 )]
+margin_left = 99.0
+margin_right = 129.0
+keep_pressed_outside = true
+text = "Up"
+align = 2
+action = "ui_cancel"
+
+[node name="Left2" type="HBoxContainer" parent="HotkeysContainer"]
+margin_left = 412.0
+margin_right = 474.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/Left2"]
 margin_top = 3.0
 margin_right = 28.0
 margin_bottom = 17.0
 text = "LEFT"
 
-[node name="RebindableAction" parent="HotkeysContainer/Left" instance=ExtResource( 2 )]
+[node name="RebindableAction" parent="HotkeysContainer/Left2" instance=ExtResource( 2 )]
 margin_left = 32.0
 margin_right = 62.0
 keep_pressed_outside = true
@@ -50,8 +72,8 @@ align = 2
 action = "ui_left"
 
 [node name="Right" type="HBoxContainer" parent="HotkeysContainer"]
-margin_left = 345.0
-margin_right = 419.0
+margin_left = 554.0
+margin_right = 628.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -72,8 +94,8 @@ align = 2
 action = "ui_right"
 
 [node name="ShowHide" type="HBoxContainer" parent="HotkeysContainer"]
-margin_left = 499.0
-margin_right = 602.0
+margin_left = 708.0
+margin_right = 811.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false

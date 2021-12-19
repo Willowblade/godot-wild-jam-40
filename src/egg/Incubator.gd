@@ -204,35 +204,12 @@ func _input(event):
 							dragging = moisturizer
 							moisturizer_placeholder.show()
 			else:
-				if dragging is Lamp:
-					dragging = null
-
-				if dragging is Egg:
-					dragging = null
-					placeholder_egg.hide()
-					if egg_area in $EggContainer/EggDropoff.get_overlapping_areas():
-						egg.global_position = egg_start_location
-						egg.rotation_degrees = 0.0
-						GlobalData.egg_state = GlobalData.egg_states.IDLE
-					else:
-						egg.global_position = egg_pickup_location
-						egg.rotation_degrees = egg_pickup_rotation
-
-				if dragging in [pillow_replacement, nest_replacement]:
-					dragging.position = Vector2()
-					dragging.z_index = 2
-
-					if dragging.get_node("Area2D") in $BaseDropoff.get_overlapping_areas():
-						update_base(dragging.get_parent().base_type)
-
-					dragging = null
+				if dragging:
+					drop_dragging()
 
 		if event.button_index == BUTTON_RIGHT:
 			# drop the moisturizer
-			if dragging is Moisturizer:
-					dragging = null
-					moisturizer.position = Vector2()
-					moisturizer_placeholder.hide()
+			drop_holding()
 
 	if Input.is_action_just_pressed("ui_bestiary"):
 		if GlobalData.bestiary.visible:
@@ -268,6 +245,13 @@ func _on_wiggle_timer_timeout():
 	$WiggleTimer.start()
 
 
+func drop_holding():
+	if dragging is Moisturizer:
+		dragging = null
+		moisturizer.position = Vector2()
+		moisturizer_placeholder.hide()
+
+
 func start_new_egg(new_egg_type: String):
 	if new_egg_type == "octosquid":
 		egg.set_octosquid_egg()
@@ -276,6 +260,29 @@ func start_new_egg(new_egg_type: String):
 
 	egg.show()
 
+func drop_dragging():
+	if dragging is Lamp:
+		dragging = null
+
+	if dragging is Egg:
+		dragging = null
+		placeholder_egg.hide()
+		if egg_area in $EggContainer/EggDropoff.get_overlapping_areas():
+			egg.global_position = egg_start_location
+			egg.rotation_degrees = 0.0
+			GlobalData.egg_state = GlobalData.egg_states.IDLE
+		else:
+			egg.global_position = egg_pickup_location
+			egg.rotation_degrees = egg_pickup_rotation
+
+	if dragging in [pillow_replacement, nest_replacement]:
+		dragging.position = Vector2()
+		dragging.z_index = 2
+
+		if dragging.get_node("Area2D") in $BaseDropoff.get_overlapping_areas():
+			update_base(dragging.get_parent().base_type)
+
+		dragging = null
 
 func egg_finished():
 	egg.hide()

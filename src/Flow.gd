@@ -34,7 +34,7 @@ func deferred_quit() -> void:
 	get_tree().quit()
 
 func toggle_paused():
-	print("Toggling pause")
+
 	if pause_menu:
 		get_tree().paused = not get_tree().paused
 		if get_tree().paused:
@@ -49,8 +49,8 @@ func _unhandled_input(event : InputEvent):
 	if game_state == STATE.GAME:
 		if InputMap.has_action("ui_cancel") and event.is_action_pressed("ui_cancel"):
 			if GlobalData.incubator and GlobalData.incubator.dragging:
-				pass
-			if GlobalData.bestiary and GlobalData.bestiary.visible:
+				GlobalData.incubator.drop_holding()
+			elif GlobalData.bestiary and GlobalData.bestiary.visible:
 				GlobalData.bestiary.deactivate()
 			else:
 				toggle_paused()
