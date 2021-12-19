@@ -55,7 +55,7 @@ func _ready():
 	egg.rotation_degrees = 0.0
 	placeholder_egg.global_position = egg_start_location
 
-	egg.set_type("sapling")
+	egg.set_type("chicken")
 
 	update_bases()
 

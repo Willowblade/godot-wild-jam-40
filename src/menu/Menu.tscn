@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/tabs/Main/MainMenuTab.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/objects/lights/light.png" type="Texture" id=7]
 [ext_resource path="res://src/egg/Egg.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/pixellari.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -16,6 +17,11 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 96
+outline_size = 2
+font_data = ExtResource( 9 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -108,3 +114,16 @@ __meta__ = {
 
 [node name="SettingsMenuTab" parent="CanvasLayer/TabContainer" instance=ExtResource( 4 )]
 visible = false
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 173.0
+margin_right = 990.0
+margin_bottom = 269.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "The Orphanegg"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

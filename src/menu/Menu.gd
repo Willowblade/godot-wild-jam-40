@@ -17,6 +17,6 @@ func wiggle_egg(egg: Egg):
 	while true:
 		yield(get_tree().create_timer(randf() * 8 + randf() * 3), "timeout")
 		egg.wiggle_small()
-		egg.notification.activate(["sad", "happy", "superhappy", "cold", "dry", "music"][randi() % 6])
+		egg.notification.activate(["sad", "happy", "superhappy", "cold", "music"][randi() % 6])
 
 
