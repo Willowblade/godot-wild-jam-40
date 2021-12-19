@@ -1,39 +1,62 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/egg/ClickableTexture.gd" type="Script" id=1]
-[ext_resource path="res://assets/objects/radio.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/radio/radio.png" type="Texture" id=2]
 [ext_resource path="res://src/egg/Radio.gd" type="Script" id=3]
-[ext_resource path="res://assets/objects/lamp/lamp-on-3.png" type="Texture" id=4]
-[ext_resource path="res://assets/objects/lamp/lamp-off-3.png" type="Texture" id=5]
+[ext_resource path="res://assets/objects/radio/radio-on-off-button.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/radio/radio-left-button.png" type="Texture" id=5]
+[ext_resource path="res://assets/objects/radio/radio-on-off.png" type="Texture" id=6]
+[ext_resource path="res://assets/objects/radio/radio-right-button.png" type="Texture" id=7]
+[ext_resource path="res://assets/objects/radio/radio-l1.png" type="Texture" id=8]
+[ext_resource path="res://assets/objects/radio/radio-l2.png" type="Texture" id=9]
+[ext_resource path="res://assets/objects/radio/radio-l3.png" type="Texture" id=10]
 
 [node name="Radio" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
 [node name="NextButton" type="Node2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 8, 0 )
+z_index = -1
 script = ExtResource( 1 )
 clickable_texture_path = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="NextButton"]
-position = Vector2( 10, 0 )
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 
 [node name="PowerButton" type="Node2D" parent="."]
-position = Vector2( -15, -27 )
+position = Vector2( 24, 16 )
+z_index = -1
 script = ExtResource( 1 )
 clickable_texture_path = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="PowerButton"]
-position = Vector2( 10, 0 )
 texture = ExtResource( 4 )
 
 [node name="PreviousButton" type="Node2D" parent="."]
-position = Vector2( -4, 4 )
+position = Vector2( -8, -16 )
+z_index = -1
 script = ExtResource( 1 )
 clickable_texture_path = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="PreviousButton"]
 texture = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="OnOff" type="Sprite" parent="."]
+position = Vector2( 8, 16 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="S1" type="Sprite" parent="."]
+position = Vector2( -8, 0 )
+texture = ExtResource( 8 )
+
+[node name="S2" type="Sprite" parent="."]
+position = Vector2( -8, 0 )
+texture = ExtResource( 9 )
+
+[node name="S3" type="Sprite" parent="."]
+position = Vector2( -8, 0 )
+texture = ExtResource( 10 )
