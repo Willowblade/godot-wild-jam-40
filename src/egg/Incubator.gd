@@ -167,7 +167,7 @@ func _input(event):
 							moisturizer_placeholder.hide()
 						else:
 							moisturizer.spray()
-							humidity += 12.5
+							humidity += 10.0
 							humidity =  min(max(0.0, humidity), 100.0)
 					else:
 						if !dragging:
@@ -239,6 +239,11 @@ func egg_is_fallen():
 	return GlobalData.egg_state == GlobalData.egg_states.FALLEN
 
 func _on_wiggle_timer_timeout():
+	if GlobalData.egg_picker.visible or hatching_animation.visible or !egg.visible:
+		$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
+		$WiggleTimer.start()
+		return
+
 	if egg_is_fallen():
 		egg.wiggle_small()
 		$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
