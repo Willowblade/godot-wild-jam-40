@@ -120,7 +120,7 @@ func set_molebear_egg():
 func set_sapling_egg():
 	growth_rate = 1.0
 	humidity_requirement = 60
-	humidity_tolerance = 10
+	humidity_tolerance = 30
 	temperature_requirement = 20
 	temperature_tolerance = 5
 	underground_requirement = ["nest"]
