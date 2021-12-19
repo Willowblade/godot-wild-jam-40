@@ -4,7 +4,7 @@
 [ext_resource path="res://src/menu/tabs/Main/MainMenuTab.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/menu/tabs/MenuTabContainer.gd" type="Script" id=3]
 [ext_resource path="res://src/menu/tabs/Settings/SettingsMenuTab.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/background/better-background.png" type="Texture" id=5]
+[ext_resource path="res://assets/background/better-background-2.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/objects/lights/light.png" type="Texture" id=7]
 [ext_resource path="res://src/egg/Egg.tscn" type="PackedScene" id=8]
@@ -64,6 +64,27 @@ type = "octosquid"
 
 [node name="Egg3" parent="Sprite" instance=ExtResource( 8 )]
 position = Vector2( 65.5518, 56.5217 )
+type = "molebear"
+
+[node name="Egg4" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( 130.435, 93.311 )
+type = "moose"
+
+[node name="Egg5" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( 100.334, 50.1672 )
+type = "mouse"
+
+[node name="Egg6" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( -88.2943, 85.9532 )
+type = "unicorn"
+
+[node name="Egg7" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( -30.7692, 46.8227 )
+type = "sapling"
+
+[node name="Egg8" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( 41.806, 93.9799 )
+type = "willow"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
