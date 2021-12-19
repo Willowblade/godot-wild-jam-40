@@ -32,6 +32,7 @@ func get_song():
 	return songs[current_index]
 
 func deactivate():
+	AudioEngine.play_effect("radio-on")
 	enabled = false
 	AudioEngine.stop_background_music()
 	GlobalData.music = null
@@ -63,11 +64,13 @@ func play():
 	AudioEngine.play_background_music(songs[current_index], timer)
 
 func activate():
+	AudioEngine.play_effect("radio-on")
 	enabled = true
 	play()
 	update_lights()
 
 func next_song():
+	AudioEngine.play_effect("radio-next")
 	press_button($NextButton)
 	if not enabled:
 		return
@@ -76,6 +79,7 @@ func next_song():
 	update_lights()
 
 func previous_song():
+	AudioEngine.play_effect("radio-next")
 	press_button($PreviousButton)
 	if not enabled:
 		return

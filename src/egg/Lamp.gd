@@ -37,12 +37,14 @@ func _process(delta):
 	beam_pivot_to_end_sprite.rotation = angle + PI / 2
 
 func turn_off():
+	AudioEngine.play_effect("lamp-on")
 	off_button.hide()
 	on_button.show()
 	cap.texture = textures["off"]
 	light.enabled = false
 
 func turn_on():
+	AudioEngine.play_effect("lamp-on")
 	off_button.show()
 	on_button.hide()
 	cap.texture = textures["on"]

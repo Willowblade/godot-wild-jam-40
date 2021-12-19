@@ -19,7 +19,16 @@ const tracks = {
 }
 
 const sfx = {
-
+	"book-close": "res://assets/audio/sfx/book-close.mp3",
+	"book-open": "res://assets/audio/sfx/book-open.mp3",
+	"chair-sound": "res://assets/audio/sfx/chair-sound.wav",
+	"page-flip": "res://assets/audio/sfx/page-flip.wav",
+	"egg-hatch": "res://assets/audio/sfx/egg-hatch.wav",
+	"radio-next": "res://assets/audio/sfx/radio-next.wav",
+	"radio-on": "res://assets/audio/sfx/radio-on.wav",
+	"lamp-on": "res://assets/audio/sfx/lamp-on.wav",
+	"table-roll": "res://assets/audio/sfx/table-roll.mp3",
+	"spray": "res://assets/audio/sfx/spray.wav",
 }
 
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/egg-hatch.mp3-f6f6bd57049116133b9d59e7dc78d776.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/egg-hatch.mp3"
+dest_files=[ "res://.import/egg-hatch.mp3-f6f6bd57049116133b9d59e7dc78d776.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

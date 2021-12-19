@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/ui/EggPicking.gd" type="Script" id=1]
 [ext_resource path="res://assets/eggs/chicken.png" type="Texture" id=2]
 [ext_resource path="res://assets/eggs/chode-egg.png" type="Texture" id=3]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/background/better-background.png" type="Texture" id=5]
 
 [node name="EggPicking" type="Control"]
 anchor_right = 1.0
@@ -20,7 +21,7 @@ margin_top = -43.0
 margin_right = 13.0
 margin_bottom = 12.0
 rect_scale = Vector2( 18.306, 12.929 )
-color = Color( 0, 0, 0, 0.337255 )
+color = Color( 0, 0, 0, 0.666667 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,10 +29,8 @@ __meta__ = {
 [node name="Eggs" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.0
-margin_top = -1.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_top = 98.0
+margin_bottom = 98.0
 custom_constants/separation = 128
 alignment = 1
 __meta__ = {
@@ -66,13 +65,31 @@ expand = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 84.0
-margin_right = 1021.0
-margin_bottom = 161.0
-text = "What will you hatch next?"
+margin_left = -1017.0
+margin_right = 3.0
+margin_bottom = 77.0
+rect_scale = Vector2( 3, 3 )
+text = "Which egg is neggst?"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Info" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 132.0
+margin_right = 1022.0
+margin_bottom = 209.0
+text = "Lots of eggs are orphaned every day.  If we don't make their lives cozy, who will?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 511, 302 )
+scale = Vector2( 3, 3 )
+z_index = -1
+texture = ExtResource( 5 )

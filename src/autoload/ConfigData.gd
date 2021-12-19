@@ -30,7 +30,7 @@ func set_mute_music(value : bool):
 
 func set_sfx_volume(value : float):
 	sfx_volume = value
-	var volume_db : float = 20*log(float(value)/100.0)/log(10.0)
+	var volume_db : float = 20*log(float(value * 0.7)/100.0)/log(10.0)
 	# -INF (when new_value = 0) doesn't seem to pose any issues!
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), volume_db)
 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/tabs/Main/MainMenuTab.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/menu/tabs/MenuTabContainer.gd" type="Script" id=3]
 [ext_resource path="res://src/menu/tabs/Settings/SettingsMenuTab.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/background/better-background.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/objects/lights/light.png" type="Texture" id=7]
+[ext_resource path="res://src/egg/Egg.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -24,6 +27,43 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 599.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 2.99, 2.99 )
+texture = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="Sprite"]
+position = Vector2( -71, -103 )
+texture = ExtResource( 7 )
+texture_scale = 0.1
+color = Color( 0.909804, 0.737255, 0.278431, 1 )
+energy = 0.5
+
+[node name="Light2D2" type="Light2D" parent="Sprite"]
+position = Vector2( 61, -103 )
+texture = ExtResource( 7 )
+texture_scale = 0.1
+color = Color( 0.909804, 0.737255, 0.278431, 1 )
+energy = 0.5
+
+[node name="Egg" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( -96.99, 51.8395 )
+
+[node name="Egg2" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( -40.1338, 93.311 )
+type = "octosquid"
+
+[node name="Egg3" parent="Sprite" instance=ExtResource( 8 )]
+position = Vector2( 65.5518, 56.5217 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

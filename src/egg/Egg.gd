@@ -8,7 +8,7 @@ onready var animation_player = $AnimationPlayer
 export var static_egg = false
 
 export var growth_rate = 1.0
-export var type = "chicken"
+export(String, "chicken", "octosquid") var type = "chicken"
 
 
 export var wiggle_time = 10.0
@@ -95,8 +95,14 @@ func stop_growing():
 		if animation_player.is_playing() and animation_player.current_animation == "pulse":
 			animation_player.stop()
 
+func set_type():
+	if type == "chicken":
+		set_chicken_egg()
+	elif type == "octosquid":
+		set_octosquid_egg()
+
 func _ready():
-	set_chicken_egg()
+	set_type()
 	$Graphics.rotation_degrees = 0.0
 	if !static_egg:
 		pass

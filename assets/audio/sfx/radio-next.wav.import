@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/radio-next.wav-3ba88441b9a6dfa89a4caef4dfd65c6f.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/radio-next.wav"
+dest_files=[ "res://.import/radio-next.wav-3ba88441b9a6dfa89a4caef4dfd65c6f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

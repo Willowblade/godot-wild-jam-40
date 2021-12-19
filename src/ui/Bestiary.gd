@@ -87,21 +87,25 @@ func load_pages():
 	right_page_container.set_page(right_page.type, get_page_contents(right_page))
 
 func go_right():
+	AudioEngine.play_effect("page-flip")
 	page_index = min(page_index + 2, len(pages) - 2)
 	load_pages()
 
 func go_left():
+	AudioEngine.play_effect("page-flip")
 	page_index = max(0, page_index - 2)
 	load_pages()
 
 
 func activate():
+	AudioEngine.play_effect("book-open")
 	page_index = 0
 	load_pages()
 	show()
 	set_process(true)
 
 func deactivate():
+	AudioEngine.play_effect("book-close")
 	hide()
 	set_process(false)
 

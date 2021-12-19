@@ -8,6 +8,7 @@ func _ready():
 	pass
 
 func spray():
+	AudioEngine.play_effect("spray")
 	var spray = spray_scene.instance()
 	sprays.add_child(spray)
 	spray.emitting = true

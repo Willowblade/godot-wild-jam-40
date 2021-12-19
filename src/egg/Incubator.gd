@@ -68,8 +68,10 @@ func update_base(new_type: String):
 	var lower_type = new_type.to_lower()
 
 	if lower_type == "nest":
+		AudioEngine.play_effect("chair-sound")
 		$Nest.set_basic_nest()
 	elif lower_type == "pillow":
+		AudioEngine.play_effect("chair-sound")
 		$Nest.set_luxury_cushion()
 
 	update_bases()
@@ -134,6 +136,9 @@ func _process(delta):
 #	lamp.set_cap_rotation(rad2deg(lamp_rotation) - 90)
 
 	GlobalData.temperature = get_temperature()
+
+func table_roll_sound():
+	AudioEngine.play_effect("table-roll")
 
 func _input(event):
 	if GlobalData.bestiary.visible or GlobalData.egg_picker.visible:

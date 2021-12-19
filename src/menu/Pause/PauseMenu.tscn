@@ -211,8 +211,8 @@ margin_bottom = 152.0
 
 [node name="MarginContainer" parent="TabContainer/SettingsTab/VBoxContainer/CenterContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
-margin_left = 125.0
-margin_right = 835.0
+margin_left = 3.0
+margin_right = 956.0
 margin_bottom = 72.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10

@@ -22,6 +22,9 @@ onready var sprites = {
 
 var check_for_enter = false
 
+func play_sound():
+	AudioEngine.play_effect("egg-hatch")
+
 signal done
 
 func _ready():

@@ -21,7 +21,12 @@ func is_available():
 func play_effect(track_path: String):
 	# TODO might not be always desired...
 	var effect_audio_stream = load(track_path)
-	effect_audio_stream.loop = false
+	if effect_audio_stream is AudioStreamMP3:
+		effect_audio_stream.loop = false
+	elif effect_audio_stream is AudioStreamOGGVorbis:
+		effect_audio_stream.loop = false
+	elif effect_audio_stream is AudioStreamSample:
+		pass
 	stream.audio_stream = effect_audio_stream
 	currently_playing = track_path
 	play()
