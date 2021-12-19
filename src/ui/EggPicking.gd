@@ -39,6 +39,8 @@ func shuffle_eggs():
 		while eggs.size() < 3:
 			eggs.push_back(unknown_eggs[i])
 			i += 1
+	else:
+		eggs.push_back(known_eggs[2])
 	eggs.shuffle()
 
 func set_graphics():
