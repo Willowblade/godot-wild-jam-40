@@ -29,7 +29,10 @@ func toggle_power():
 		activate()
 
 func get_song():
-	return songs[current_index]
+	if enabled:
+		return songs[current_index]
+	else:
+		return null
 
 func deactivate():
 	AudioEngine.play_effect("radio-on")

@@ -35,6 +35,18 @@ var pages = [{
 	"creature": "mouse"
 }, {
 	"type": "creature",
+	"creature": "moose"
+}, {
+	"type": "creature",
+	"creature": "molebear"
+}, {
+	"type": "creature",
+	"creature": "sapling"
+}, {
+	"type": "creature",
+	"creature": "unicorn"
+}, {
+	"type": "creature",
 	"creature": "willow"
 }]
 
@@ -44,6 +56,8 @@ func _ready():
 #	deactivate()
 	go_right_button.connect("pressed", self, "go_right")
 	go_left_button.connect("pressed", self, "go_left")
+
+	$Cancel.connect("pressed", self, "deactivate")
 
 	SignalHub.connect("clicked_bestiary_link", self, "_on_clicked_bestiary_link")
 
@@ -103,6 +117,10 @@ func activate():
 	load_pages()
 	show()
 	set_process(true)
+
+func set_page(page_number):
+	page_index = page_number
+	load_pages()
 
 func deactivate():
 	AudioEngine.play_effect("book-close")

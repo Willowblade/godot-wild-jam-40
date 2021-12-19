@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/egg/Incubator.gd" type="Script" id=1]
 [ext_resource path="res://src/egg/Nest.tscn" type="PackedScene" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://src/egg/MoistureMeter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/egg/HatchingAnimation.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/objects/lights/light.png" type="Texture" id=13]
+[ext_resource path="res://src/egg/ClickableTexture.gd" type="Script" id=14]
 [ext_resource path="res://src/egg/NestContainer.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/objects/book-smoll.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 18 )
@@ -173,3 +175,11 @@ texture = ExtResource( 13 )
 texture_scale = 0.1
 color = Color( 0.909804, 0.737255, 0.278431, 1 )
 energy = 0.5
+
+[node name="Book" type="Node2D" parent="."]
+position = Vector2( -126, -60 )
+script = ExtResource( 14 )
+clickable_texture_path = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite" parent="Book"]
+texture = ExtResource( 16 )

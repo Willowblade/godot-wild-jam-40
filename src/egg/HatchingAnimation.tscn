@@ -342,6 +342,18 @@ tracks/21/keys = {
 "method": "play_sound"
 } ]
 }
+tracks/22/type = "value"
+tracks/22/path = NodePath("ReadyCheck:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="HatchingAnimation" type="Node2D"]
 script = ExtResource( 5 )

@@ -12,11 +12,53 @@ onready var sprites = {
 		"flavor": "Predictable!"
 	},
 	"octosquid": {
-		"top": preload("res://assets/eggs/chode-egg-top.png"),
-		"bottom": preload("res://assets/eggs/chode-egg-bottom.png"),
+		"top": preload("res://assets/eggs/squid-top.png"),
+		"bottom": preload("res://assets/eggs/squid-bottom.png"),
 		"creature": preload("res://assets/creature/octosquid.png"),
 		"name": "Octosquid",
 		"flavor": "Woah! Rad!"
+	},
+	"mouse": {
+		"top": preload("res://assets/eggs/mouse-top.png"),
+		"bottom": preload("res://assets/eggs/mouse-bottom.png"),
+		"creature": preload("res://assets/creature/mouse.png"),
+		"name": "Mouse",
+		"flavor": "Stay here!!"
+	},
+	"moose": {
+		"top": preload("res://assets/eggs/moose-top.png"),
+		"bottom": preload("res://assets/eggs/moose-bottom.png"),
+		"creature": preload("res://assets/creature/moose.png"),
+		"name": "Moose",
+		"flavor": "Should I wrestle it?"
+	},
+	"molebear": {
+		"top": preload("res://assets/eggs/molebear-top.png"),
+		"bottom": preload("res://assets/eggs/molebear-bottom.png"),
+		"creature": preload("res://assets/creature/molebear.png"),
+		"name": "Molebear",
+		"flavor": "Mole? Bear?"
+	},
+	"sapling": {
+		"top": preload("res://assets/eggs/sapling-top.png"),
+		"bottom": preload("res://assets/eggs/sapling-bottom.png"),
+		"creature": preload("res://assets/creature/sapling.png"),
+		"name": "Sapling",
+		"flavor": "I should write a thesis on this!!"
+	},
+	"unicorn": {
+		"top": preload("res://assets/eggs/unicorn-top.png"),
+		"bottom": preload("res://assets/eggs/unicorn-bottom.png"),
+		"creature": preload("res://assets/creature/unicorn.png"),
+		"name": "Unicorn",
+		"flavor": "Granny never told me this!"
+	},
+	"willow": {
+		"top": preload("res://assets/eggs/willow-top.png"),
+		"bottom": preload("res://assets/eggs/willow-bottom.png"),
+		"creature": preload("res://assets/creature/willow.png"),
+		"name": "Lil' Willow",
+		"flavor": "Wi(tt)ll ow(d) developer!"
 	}
 }
 

@@ -11,4 +11,4 @@ func _process(delta):
 
 func set_moisture_pointer():
 	var humidity = GlobalData.humidity
-	pointer.rotation_degrees = 20 + humidity / 100 * 135
+	pointer.rotation_degrees = 15 + humidity / 100 * 150

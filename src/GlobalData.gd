@@ -9,6 +9,8 @@ var temperature = 40
 var base = "pillow"
 var music = null
 
+var debug_rate = 1.0
+
 
 # ui registration
 var bestiary: Bestiary = null
@@ -43,7 +45,7 @@ func _process(delta):
 
 		if incubator.egg and incubator.egg.visible:
 			if incubator.egg.can_grow():
-				egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate
+				egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate * debug_rate
 				incubator.egg.set_growing()
 			else:
 				incubator.egg.stop_growing()

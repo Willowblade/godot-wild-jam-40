@@ -57,6 +57,9 @@ func _ready():
 
 	update_bases()
 
+	GlobalData.bestiary.activate()
+	GlobalData.bestiary.set_page(4)
+
 func update_bases():
 	for base in $Bases.get_children():
 		if nest.nest_type == base.base_type.to_lower():
@@ -144,6 +147,11 @@ func _input(event):
 	if GlobalData.bestiary.visible or GlobalData.egg_picker.visible:
 		return
 
+	if Input.is_action_just_pressed("debug_grow"):
+		GlobalData.egg_growth += 10.0
+	if Input.is_action_just_pressed("debug_increase_rate"):
+		GlobalData.debug_rate = 10.0
+
 	if event is InputEventMouseMotion:
 		if egg.mouse_overlaps():
 			pass
@@ -195,6 +203,8 @@ func _input(event):
 						placeholder_egg.show()
 						egg_pickup_location = egg.global_position
 						egg_pickup_rotation = egg.rotation_degrees
+				elif $Book.mouse_overlaps():
+					GlobalData.bestiary.activate()
 
 				elif moisturizer.mouse_overlaps():
 					if dragging is Moisturizer:
@@ -260,11 +270,7 @@ func drop_holding():
 func start_new_egg(new_egg_type: String):
 	# unlock the old egg
 	GlobalData.unlock_creature(egg.type)
-	if new_egg_type == "octosquid":
-		egg.set_octosquid_egg()
-	elif new_egg_type == "chicken":
-		egg.set_chicken_egg()
-
+	egg.set_type(new_egg_type)
 	egg.show()
 
 func drop_dragging():
@@ -291,8 +297,10 @@ func drop_dragging():
 
 		dragging = null
 
+
 func egg_finished():
 	egg.hide()
+	GlobalData.unlock_creature(egg.type)
 	hatching_animation.set_creature(egg.type)
 	hatching_animation.play()
 

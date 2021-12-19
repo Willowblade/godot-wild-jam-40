@@ -38,7 +38,7 @@ func shuffle_eggs():
 	var i = 0
 	if unknown_eggs.size() > 0:
 		while eggs.size() < 3:
-			unknown_eggs.push_back(unknown_eggs[i])
+			eggs.push_back(unknown_eggs[i])
 			i += 1
 	eggs.shuffle()
 

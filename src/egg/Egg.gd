@@ -8,7 +8,7 @@ onready var animation_player = $AnimationPlayer
 export var static_egg = false
 
 export var growth_rate = 1.0
-export(String, "chicken", "octosquid") var type = "chicken"
+export(String, "chicken", "octosquid", "molebear", "moose", "mouse", "unicorn", "sapling", "willow") var type = "chicken"
 
 
 export var wiggle_time = 10.0
@@ -30,20 +30,11 @@ var underground_tolerance = []
 var music_requirement = ["classical"]
 var music_tolerance = [""]
 
-onready var egg_textures = {
-	"chicken": preload("res://assets/eggs/chicken.png"),
-	"octosquid": preload("res://assets/eggs/chode-egg.png"),
-}
-
 var growing = false
 
 
 func set_octosquid_egg():
-	GlobalData.egg_growth = 0.0
 	growth_rate = 3.0
-	type = "octosquid"
-	sprite.texture = egg_textures[type]
-	self.reset()
 	humidity_requirement = 40
 	humidity_tolerance = 50
 	temperature_requirement = 50
@@ -53,13 +44,57 @@ func set_octosquid_egg():
 	music_requirement = ["metal"]
 	music_tolerance = ["jazz"]
 	temperature_down_close_to_hatching = true
+
+func set_moose_egg():
+	growth_rate = 3.0
+	humidity_requirement = 20
+	humidity_tolerance = 10
+	temperature_requirement = 10
+	temperature_tolerance = 0
+	underground_requirement = ["nest"]
+	underground_tolerance = []
+	music_requirement = []
+	music_tolerance = []
+	temperature_down_close_to_hatching = false
+
+func set_willow_egg():
+	growth_rate = 2.0
+	humidity_requirement = 50
+	humidity_tolerance = 20
+	temperature_requirement = 35
+	temperature_tolerance = 8
+	underground_requirement = ["pillow"]
+	underground_tolerance = []
+	music_requirement = ["jazz"]
+	music_tolerance = []
+	temperature_down_close_to_hatching = true
+
+func set_mouse_egg():
+	growth_rate = 5.0
+	humidity_requirement = 20
+	humidity_tolerance = 40
+	temperature_requirement = 40
+	temperature_tolerance = 10
+	underground_requirement = ["nest"]
+	underground_tolerance = []
+	music_requirement = ["classical"]
+	music_tolerance = ["metal"]
+	temperature_down_close_to_hatching = true
+
+func set_unicorn_egg():
+	growth_rate = 1.0
+	humidity_requirement = 100
+	humidity_tolerance = 5
+	temperature_requirement = 45
+	temperature_tolerance = 3
+	underground_requirement = ["pillow"]
+	underground_tolerance = []
+	music_requirement = ["metal"]
+	music_tolerance = []
+	temperature_down_close_to_hatching = true
 #
 func set_chicken_egg():
-	GlobalData.egg_growth = 0.0
 	growth_rate = 8.0
-	type = "chicken"
-	sprite.texture = egg_textures.chicken
-	self.reset()
 	humidity_requirement = 60
 	humidity_tolerance = 40
 	temperature_requirement = 40
@@ -85,6 +120,29 @@ func set_chicken_egg():
 #	music_requirement = ["classical", "jazz"]
 #	music_tolerance = ["jazz"]
 #	temperature_down_close_to_hatching = false
+func set_molebear_egg():
+	growth_rate = 3
+	humidity_requirement = 40
+	humidity_tolerance = 20
+	temperature_requirement = 30
+	temperature_tolerance = 8
+	underground_requirement = ["nest"]
+	underground_tolerance = []
+	music_requirement = ["jazz"]
+	music_tolerance = ["classical"]
+	temperature_down_close_to_hatching = true
+
+func set_sapling_egg():
+	growth_rate = 1.0
+	humidity_requirement = 60
+	humidity_tolerance = 10
+	temperature_requirement = 20
+	temperature_tolerance = 5
+	underground_requirement = ["nest"]
+	underground_tolerance = []
+	music_requirement = []
+	music_tolerance = ["classical"]
+	temperature_down_close_to_hatching = true
 
 func set_growing():
 	if !growing:
@@ -95,14 +153,30 @@ func stop_growing():
 		if animation_player.is_playing() and animation_player.current_animation == "pulse":
 			animation_player.stop()
 
-func set_type():
+func set_type(new_type):
+	GlobalData.egg_growth = 0.0
+	type = new_type
+	sprite.texture = Database.BESTIARY[type].egg
+	self.reset()
 	if type == "chicken":
 		set_chicken_egg()
 	elif type == "octosquid":
 		set_octosquid_egg()
+	elif type == "mouse":
+		set_mouse_egg()
+	elif type == "moose":
+		set_moose_egg()
+	elif type == "sapling":
+		set_sapling_egg()
+	elif type == "molebear":
+		set_molebear_egg()
+	elif type == "unicorn":
+		set_unicorn_egg()
+	elif type == "willow":
+		set_willow_egg()
 
 func _ready():
-	set_type()
+	set_type(type)
 	$Graphics.rotation_degrees = 0.0
 	if !static_egg:
 		pass

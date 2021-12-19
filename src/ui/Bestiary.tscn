@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui/Bestiary.gd" type="Script" id=1]
 [ext_resource path="res://assets/book/arrow-left.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/book/arrow-right.png" type="Texture" id=5]
 [ext_resource path="res://assets/book/arrow-left-pressed.png" type="Texture" id=6]
 [ext_resource path="res://assets/book/arrow-right-pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/book/cancel.png" type="Texture" id=8]
 
 [node name="Bestiary" type="Control"]
 anchor_right = 1.0
@@ -95,3 +96,12 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 expand = true
 stretch_mode = 5
+
+[node name="Cancel" type="TextureButton" parent="."]
+margin_left = 916.0
+margin_top = 26.0
+margin_right = 980.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 8 )
+expand = true
