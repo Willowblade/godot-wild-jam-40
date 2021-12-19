@@ -1,6 +1,48 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ui/Page.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/fonts/pixellari.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
 
 [node name="IntroductionPage" instance=ExtResource( 1 )]
 type = "PAGE"
+
+[node name="Contents" parent="." index="1"]
+custom_constants/margin_top = 110
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Contents" index="0"]
+margin_left = 80.0
+margin_top = 110.0
+margin_right = 330.0
+margin_bottom = 440.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Contents/VBoxContainer" index="0"]
+margin_right = 250.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 50, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Introduction"
+align = 1
+
+[node name="Description" type="Label" parent="Contents/VBoxContainer" index="1"]
+margin_top = 48.0
+margin_right = 250.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 250, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Dearest grandchild,
+
+I was so tired of caring for these eggs... I burned my old completed Eggsby and am now living in Hawaii.
+
+So I expect you to run the Orphanegg. If you don't want to see my heritage vanish to pay heavy fines to the Internal Incubation Service, you'd better shape up and hatch some eggs!
+
+- Love, grandma Bonnie"
+autowrap = true

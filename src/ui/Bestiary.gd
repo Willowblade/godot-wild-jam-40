@@ -21,23 +21,22 @@ var pages = [{
 }, {
 	"type": "table_of_contents",
 }, {
-	"type": "blank",
+	"type": "author",
 }, {
 	"type": "introduction",
 }, {
 	"type": "creature",
-	"entry": "chicken"
+	"creature": "chicken"
 }, {
 	"type": "creature",
-	"entry": "chicken"
+	"creature": "octosquid"
 }, {
 	"type": "creature",
-	"entry": "chicken"
+	"creature": "mouse"
 }, {
 	"type": "creature",
-	"entry": "chicken"
+	"creature": "willow"
 }]
-
 
 
 func _ready():
@@ -98,6 +97,7 @@ func go_left():
 
 func activate():
 	page_index = 0
+	load_pages()
 	show()
 	set_process(true)
 

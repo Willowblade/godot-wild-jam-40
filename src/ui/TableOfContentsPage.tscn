@@ -26,13 +26,13 @@ custom_constants/separation = 30
 
 [node name="Title" type="Label" parent="Contents/VBoxContainer" index="0"]
 margin_right = 230.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 230, 0 )
 text = "Table of Contents"
 align = 1
 
 [node name="Items" type="VBoxContainer" parent="Contents/VBoxContainer" index="1"]
-margin_top = 44.0
+margin_top = 46.0
 margin_right = 230.0
-margin_bottom = 44.0
+margin_bottom = 46.0
 rect_min_size = Vector2( 230, 0 )

@@ -18,13 +18,13 @@ func set_page_contents(contents: Dictionary):
 			items.add_child(item)
 			item.set_number(i - 2)
 			if page.type == "creature":
-				if GlobalData.unlocked_creature(page.entry):
-					item.set_name(page.entry.capitalize())
+				if GlobalData.unlocked_creature(page.creature):
+					item.set_name(page.creature.capitalize())
 				else:
 					item.set_name("??????")
 			if page.type == "introduction":
 				item.set_name("Introduction")
 			if page.type == "table_of_contents":
-				item.set_name("Table of Contents (this page)")
+				item.set_name("Table of Contents")
 		i += 1
 

@@ -17,11 +17,11 @@ func _ready():
 
 func set_page_margins():
 	if side == "left":
-		$Contents.add_constant_override("margin_left", 90)
+		$Contents.add_constant_override("margin_left", 100)
 		$Contents.add_constant_override("margin_right", 50)
 	if side == "right":
 		$Contents.add_constant_override("margin_left", 35)
-		$Contents.add_constant_override("margin_right", 100)
+		$Contents.add_constant_override("margin_right", 130)
 
 func set_page_texture():
 	set_page_margins()

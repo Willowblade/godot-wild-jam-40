@@ -91,6 +91,7 @@ SignalHub="*res://src/SignalHub.tscn"
 AudioEngine="*res://src/autoload/audio/AudioEngine.tscn"
 Flow="*res://src/Flow.tscn"
 ConfigData="*res://src/autoload/ConfigData.tscn"
+Database="*res://src/Database.tscn"
 
 [importer_defaults]
 

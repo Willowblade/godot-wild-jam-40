@@ -2,12 +2,12 @@ extends Node
 
 
 var known = []
+#var known = ["chicken", "octosquid"]
 
 var humidity = 30
 var temperature = 40
 var base = "pillow"
 var music = null
-
 
 
 # ui registration
@@ -21,6 +21,10 @@ var egg_growth = 0.0
 var new_egg = 0.0
 var egg_state = egg_states.IDLE
 
+
+func unlock_creature(creature_name):
+	if not creature_name in known:
+		known.push_back(creature_name)
 
 func reset():
 	bestiary = null
@@ -49,7 +53,7 @@ func _process(delta):
 
 
 func unlocked_creature(creature_name: String) -> bool:
-	return false
+	return creature_name in known
 
 
 func selected_new_egg(new_egg_name):
@@ -60,5 +64,7 @@ func selected_new_egg(new_egg_name):
 
 func activate_egg_picker():
 	# fill in list of egg_picker with eggs old and new that the player can choose
+	egg_picker.shuffle_eggs()
+	egg_picker.set_graphics()
 	egg_picker.activate()
 

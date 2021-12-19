@@ -7,6 +7,7 @@ onready var cover_page_scene = preload("res://src/ui/CoverPage.tscn")
 onready var introduction_page_scene = preload("res://src/ui/IntroductionPage.tscn")
 onready var creature_page_scene = preload("res://src/ui/CreaturePage.tscn")
 onready var toc_scene = preload("res://src/ui/TableOfContentsPage.tscn")
+onready var author_scene = preload("res://src/ui/AuthorPage.tscn")
 
 onready var contents_container = $Contents
 
@@ -21,6 +22,7 @@ onready var mapping  = {
 	"introduction": introduction_page_scene,
 	"creature": creature_page_scene,
 	"table_of_contents": toc_scene,
+	"author": author_scene,
 }
 
 func _ready():

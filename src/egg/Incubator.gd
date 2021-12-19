@@ -253,6 +253,8 @@ func drop_holding():
 
 
 func start_new_egg(new_egg_type: String):
+	# unlock the old egg
+	GlobalData.unlock_creature(egg.type)
 	if new_egg_type == "octosquid":
 		egg.set_octosquid_egg()
 	elif new_egg_type == "chicken":
