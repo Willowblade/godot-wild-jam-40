@@ -144,7 +144,7 @@ func table_roll_sound():
 	AudioEngine.play_effect("table-roll")
 
 func _input(event):
-	if GlobalData.bestiary.visible or GlobalData.egg_picker.visible:
+	if GlobalData.bestiary.visible or GlobalData.egg_picker.visible or GlobalData.win_screen.visible:
 		return
 
 	if Input.is_action_just_pressed("debug_grow"):
@@ -304,9 +304,15 @@ func egg_finished():
 	hatching_animation.set_creature(egg.type)
 	hatching_animation.play()
 
+func after_showing_win():
+	GlobalData.activate_egg_picker()
 
 func _on_hatching_animation_done():
 	hatching_animation.check_for_enter = false
 	hatching_animation.hide()
 	hatching_animation.set_process_input(false)
-	GlobalData.activate_egg_picker()
+	if GlobalData.should_show_win():
+		GlobalData.win_achieved = true
+		GlobalData.win_screen.activate()
+	else:
+		GlobalData.activate_egg_picker()

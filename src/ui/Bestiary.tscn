@@ -105,3 +105,6 @@ margin_bottom = 90.0
 rect_min_size = Vector2( 64, 64 )
 texture_normal = ExtResource( 8 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

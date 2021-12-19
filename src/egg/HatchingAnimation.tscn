@@ -411,6 +411,7 @@ __meta__ = {
 }
 
 [node name="ReadyCheck" type="Label" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_left = -81.0
 margin_top = 18.0

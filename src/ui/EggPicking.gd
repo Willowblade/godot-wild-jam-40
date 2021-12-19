@@ -2,7 +2,6 @@ extends Control
 class_name EggPicking
 
 
-
 var eggs = ["chicken", "octosquid", "chicken"]
 
 var ready = false

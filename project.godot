@@ -63,6 +63,11 @@ _global_script_classes=[ {
 "class": "ToCItem",
 "language": "GDScript",
 "path": "res://src/ui/ToCItem.gd"
+}, {
+"base": "Control",
+"class": "WinScreen",
+"language": "GDScript",
+"path": "res://src/ui/WinScreen.gd"
 } ]
 _global_script_class_icons={
 "Bestiary": "",
@@ -75,7 +80,8 @@ _global_script_class_icons={
 "Moisturizer": "",
 "Page": "",
 "PauseTab": "",
-"ToCItem": ""
+"ToCItem": "",
+"WinScreen": ""
 }
 
 [application]

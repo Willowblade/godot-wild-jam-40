@@ -35,8 +35,8 @@ var growing = false
 
 func set_octosquid_egg():
 	growth_rate = 3.0
-	humidity_requirement = 40
-	humidity_tolerance = 50
+	humidity_requirement = 90
+	humidity_tolerance = 40
 	temperature_requirement = 50
 	temperature_tolerance = 5
 	underground_requirement = ["pillow"]
@@ -58,7 +58,7 @@ func set_moose_egg():
 	temperature_down_close_to_hatching = false
 
 func set_willow_egg():
-	growth_rate = 2.0
+	growth_rate = 1.8
 	humidity_requirement = 50
 	humidity_tolerance = 20
 	temperature_requirement = 35
@@ -70,7 +70,7 @@ func set_willow_egg():
 	temperature_down_close_to_hatching = true
 
 func set_mouse_egg():
-	growth_rate = 5.0
+	growth_rate = 3.2
 	humidity_requirement = 20
 	humidity_tolerance = 40
 	temperature_requirement = 40
@@ -84,7 +84,7 @@ func set_mouse_egg():
 func set_unicorn_egg():
 	growth_rate = 1.0
 	humidity_requirement = 100
-	humidity_tolerance = 5
+	humidity_tolerance = 20
 	temperature_requirement = 45
 	temperature_tolerance = 3
 	underground_requirement = ["pillow"]
@@ -94,7 +94,7 @@ func set_unicorn_egg():
 	temperature_down_close_to_hatching = true
 #
 func set_chicken_egg():
-	growth_rate = 8.0
+	growth_rate = 4.0
 	humidity_requirement = 60
 	humidity_tolerance = 40
 	temperature_requirement = 40
@@ -104,24 +104,9 @@ func set_chicken_egg():
 	music_requirement = ["classical"]
 	music_tolerance = ["jazz"]
 	temperature_down_close_to_hatching = true
-#
-#func set_chicken_egg():
-#	GlobalData.egg_growth = 0.0
-#	growth_rate = 30.0
-#	type = "chicken"
-#	sprite.texture = egg_textures[type]
-#	self.reset()
-#	humidity_requirement = 50
-#	humidity_tolerance = 100
-#	temperature_requirement = 35
-#	temperature_tolerance = 30
-#	underground_requirement = ["nest", "pillow"]
-#	underground_tolerance = []
-#	music_requirement = ["classical", "jazz"]
-#	music_tolerance = ["jazz"]
-#	temperature_down_close_to_hatching = false
+
 func set_molebear_egg():
-	growth_rate = 3
+	growth_rate = 2.5
 	humidity_requirement = 40
 	humidity_tolerance = 20
 	temperature_requirement = 30
