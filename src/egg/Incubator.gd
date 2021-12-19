@@ -33,7 +33,7 @@ const HUMIDITY_DECREASE_RATE = 2
 const LAMP_MIN = 40
 const LAMP_MAX = 100
 const MAX_TEMPERATURE = 50.0
-const MIN_TEMPERATURE = 30.0
+const MIN_TEMPERATURE = 20.0
 const OFF_TEMPERATURE = 10.0
 
 const WIGGLE_TIME = 6.0
@@ -54,6 +54,8 @@ func _ready():
 	egg.global_position = egg_start_location
 	egg.rotation_degrees = 0.0
 	placeholder_egg.global_position = egg_start_location
+
+	egg.set_type("sapling")
 
 	update_bases()
 
@@ -252,7 +254,7 @@ func _on_wiggle_timer_timeout():
 
 	if egg.get_annoyances().size() >= 2:
 		# 40% chance to fall out
-		if randf() < 0.4:
+		if randf() < 0.3:
 			egg_fall()
 			$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
 			$WiggleTimer.start()
