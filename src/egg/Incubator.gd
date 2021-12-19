@@ -2,7 +2,7 @@ extends Node2D
 class_name Incubator
 
 var dragging: Node2D = null
-var egg_state = 'idle'
+
 
 onready var radio = $Radio
 onready var egg: Egg = $EggContainer/Egg
@@ -21,7 +21,6 @@ onready var nest = $Nest
 onready var pillow_replacement = $Bases/PillowContainer.nest
 onready var nest_replacement = $Bases/NestContainer.nest
 
-enum egg_states {IDLE, FALLEN}
 
 var egg_pickup_location: Vector2 = Vector2()
 var egg_pickup_rotation: float = 0.0
@@ -37,7 +36,7 @@ const MAX_TEMPERATURE = 50.0
 const MIN_TEMPERATURE = 30.0
 const OFF_TEMPERATURE = 10.0
 
-const WIGGLE_TIME = 8.0
+const WIGGLE_TIME = 6.0
 const WIGGLE_VARIATION = 2.0
 
 var waiting_for_hatch_animation = true
@@ -51,7 +50,7 @@ func _ready():
 	$HatchingAnimation.connect("done", self, "_on_hatching_animation_done")
 
 	GlobalData.incubator = self
-	egg_state = egg_states.IDLE
+	GlobalData.egg_state = GlobalData.egg_states.IDLE
 	egg.global_position = egg_start_location
 	egg.rotation_degrees = 0.0
 	placeholder_egg.global_position = egg_start_location
@@ -76,9 +75,11 @@ func update_base(new_type: String):
 	update_bases()
 
 func egg_fall():
+	egg.notification.activate("annoyed")
 	$AnimationPlayer.play("egg-fall")
 	yield($AnimationPlayer, "animation_finished")
-	egg_state = egg_states.FALLEN
+	GlobalData.egg_state = GlobalData.egg_states.FALLEN
+
 
 func get_temperature() -> float:
 	if lamp.off_button.visible:
@@ -99,9 +100,6 @@ func _process(delta):
 	humidity -= HUMIDITY_DECREASE_RATE * delta
 	if humidity < 0.0:
 		humidity =  min(max(0.0, humidity), 100.0)
-
-#	if Input.is_action_just_pressed("ui_accept"):
-#		egg_fall()
 
 	if dragging:
 		if dragging is Lamp:
@@ -138,6 +136,9 @@ func _process(delta):
 	GlobalData.temperature = get_temperature()
 
 func _input(event):
+	if GlobalData.bestiary.visible or GlobalData.egg_picker.visible:
+		return
+
 	if event is InputEventMouseMotion:
 		if egg.mouse_overlaps():
 			pass
@@ -184,7 +185,7 @@ func _input(event):
 						dragging.z_index = 10
 
 				elif egg.mouse_overlaps():
-					if egg_state == egg_states.FALLEN and !dragging:
+					if egg_is_fallen() and !dragging:
 						dragging = egg
 						placeholder_egg.show()
 						egg_pickup_location = egg.global_position
@@ -212,7 +213,7 @@ func _input(event):
 					if egg_area in $EggContainer/EggDropoff.get_overlapping_areas():
 						egg.global_position = egg_start_location
 						egg.rotation_degrees = 0.0
-						egg_state = egg_states.IDLE
+						GlobalData.egg_state = GlobalData.egg_states.IDLE
 					else:
 						egg.global_position = egg_pickup_location
 						egg.rotation_degrees = egg_pickup_rotation
@@ -233,9 +234,34 @@ func _input(event):
 					moisturizer.position = Vector2()
 					moisturizer_placeholder.hide()
 
+	if Input.is_action_just_pressed("ui_bestiary"):
+		if GlobalData.bestiary.visible:
+			GlobalData.bestiary.deactivate()
+		else:
+			GlobalData.bestiary.activate()
+
+func egg_is_idle():
+	return GlobalData.egg_state == GlobalData.egg_states.IDLE
+
+func egg_is_fallen():
+	return GlobalData.egg_state == GlobalData.egg_states.FALLEN
 
 func _on_wiggle_timer_timeout():
-	if egg_state == egg_states.IDLE:
+	if egg_is_fallen():
+		egg.wiggle_small()
+		$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
+		$WiggleTimer.start()
+		return
+
+	if egg.get_annoyances().size() >= 2:
+		# 40% chance to fall out
+		if randf() < 0.4:
+			egg_fall()
+			$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
+			$WiggleTimer.start()
+			return
+
+	if egg_is_idle():
 		egg.wiggle()
 
 	$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION

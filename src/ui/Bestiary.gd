@@ -60,6 +60,9 @@ func _ready():
 
 	load_pages()
 
+	# important
+	deactivate()
+
 
 func _on_clicked_bestiary_link(page_number: int):
 	print("Page number was clicked ", page_number)
@@ -94,6 +97,7 @@ func go_left():
 
 
 func activate():
+	page_index = 0
 	show()
 	set_process(true)
 
@@ -106,3 +110,5 @@ func _process(delta):
 		go_right()
 	if Input.is_action_just_pressed("ui_left"):
 		go_left()
+	if Input.is_action_just_pressed("ui_cancel"):
+		deactivate()

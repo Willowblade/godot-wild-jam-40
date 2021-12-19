@@ -1,0 +1,406 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Menu/Pause/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://src/Menu/Pause/Tabs/SettingsPauseTab.gd" type="Script" id=2]
+[ext_resource path="res://src/Menu/Pause/Tabs/MainPauseTab.gd" type="Script" id=3]
+[ext_resource path="res://assets/theme.tres" type="Theme" id=4]
+[ext_resource path="res://src/Menu/Pause/Tabs/PauseTabContainer.gd" type="Script" id=5]
+[ext_resource path="res://src/menu/tabs/Settings/Options/OptionsMenu.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.12245
+margin_bottom = -1.12244
+custom_styles/panel = SubResource( 1 )
+tabs_visible = false
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTab" type="MarginContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/MainTab"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 26
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleHBox" type="HBoxContainer" parent="TabContainer/MainTab/VBoxContainer"]
+margin_left = 336.0
+margin_top = 120.0
+margin_right = 688.0
+margin_bottom = 136.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TabContainer/MainTab/VBoxContainer/TitleHBox"]
+margin_right = 352.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+text = "Taking a break? I've heard hot chocolate is nice..."
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/MainTab/VBoxContainer"]
+margin_left = 410.0
+margin_top = 162.0
+margin_right = 614.0
+margin_bottom = 418.0
+size_flags_horizontal = 4
+custom_constants/separation = 16
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="TabContainer/MainTab/VBoxContainer/VBoxContainer"]
+margin_right = 204.0
+margin_bottom = 52.6
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../QuitButton")
+focus_previous = NodePath("../QuitButton")
+text = "RESUME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="Button" parent="TabContainer/MainTab/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 204.0
+margin_bottom = 120.6
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_bottom = NodePath("../MainMenuButton")
+focus_next = NodePath("../MainMenuButton")
+text = "SETTINGS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuButton" type="Button" parent="TabContainer/MainTab/VBoxContainer/VBoxContainer"]
+margin_top = 136.0
+margin_right = 204.018
+margin_bottom = 188.6
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../SettingsButton")
+focus_neighbour_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../SettingsButton")
+text = "RETURN TO MAIN MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="TabContainer/MainTab/VBoxContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 204.0
+margin_bottom = 256.6
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../MainMenuButton")
+focus_neighbour_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../MainMenuButton")
+text = "QUIT"
+
+[node name="HintLabel" type="Label" parent="TabContainer/MainTab/VBoxContainer"]
+margin_left = 312.0
+margin_top = 444.0
+margin_right = 712.0
+margin_bottom = 479.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_horizontal = 4
+text = "Relax, you're doing great. Your egg is ready when you are."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="SettingsTab" type="MarginContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+script = ExtResource( 2 )
+tab_type = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SettingsTab"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 992.0
+margin_bottom = 568.0
+custom_constants/separation = 24
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer"]
+margin_left = 442.0
+margin_right = 518.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/TitleHBox"]
+margin_right = 76.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+text = "SETTINGS"
+align = 1
+valign = 1
+
+[node name="SectionHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer"]
+margin_top = 40.0
+margin_right = 960.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FrontHSeparator" type="HSeparator" parent="TabContainer/SettingsTab/VBoxContainer/SectionHBox"]
+margin_right = 437.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/SectionHBox"]
+margin_left = 441.0
+margin_right = 518.0
+margin_bottom = 16.0
+text = "KEYBINDS"
+
+[node name="BackHSeparator" type="HSeparator" parent="TabContainer/SettingsTab/VBoxContainer/SectionHBox"]
+margin_left = 522.0
+margin_right = 960.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="TabContainer/SettingsTab/VBoxContainer"]
+margin_top = 80.0
+margin_right = 960.0
+margin_bottom = 152.0
+
+[node name="MarginContainer" parent="TabContainer/SettingsTab/VBoxContainer/CenterContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+margin_left = 125.0
+margin_right = 835.0
+margin_bottom = 72.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/SettingsTab/VBoxContainer"]
+margin_top = 176.0
+margin_right = 960.0
+margin_bottom = 460.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer"]
+margin_right = 960.0
+margin_bottom = 284.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
+alignment = 1
+
+[node name="AudioContainer" type="VBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 960.0
+margin_bottom = 266.0
+custom_constants/separation = 16
+
+[node name="SectionHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_right = 960.0
+margin_bottom = 16.0
+alignment = 1
+
+[node name="FrontHSeparator" type="HSeparator" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SectionHBox"]
+margin_right = 451.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SectionHBox"]
+margin_left = 455.0
+margin_right = 504.0
+margin_bottom = 16.0
+text = "AUDIO"
+
+[node name="BackHSeparator" type="HSeparator" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SectionHBox"]
+margin_left = 508.0
+margin_right = 960.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="MasterVolumeHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_top = 32.0
+margin_right = 960.0
+margin_bottom = 48.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeHBox"]
+margin_right = 412.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "MASTER"
+align = 2
+
+[node name="VolumeSlider" type="HSlider" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeHBox"]
+margin_left = 416.0
+margin_right = 544.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../../../../../BackButton")
+focus_neighbour_bottom = NodePath("../../MusicVolumeHBox/VolumeSlider")
+focus_next = NodePath("../../MusicVolumeHBox/VolumeSlider")
+focus_previous = NodePath("../../../../../BackButton")
+value = 100.0
+
+[node name="VolumeLabel" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeHBox"]
+margin_left = 548.0
+margin_right = 960.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "(100 %)"
+
+[node name="MusicVolumeHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_top = 64.0
+margin_right = 960.0
+margin_bottom = 80.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MusicVolumeHBox"]
+margin_right = 412.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "MUSIC"
+align = 2
+
+[node name="VolumeSlider" type="HSlider" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MusicVolumeHBox"]
+margin_left = 416.0
+margin_right = 544.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../../MasterVolumeHBox/VolumeSlider")
+focus_neighbour_bottom = NodePath("../../MuteMusicCheckBox")
+focus_next = NodePath("../../MuteMusicCheckBox")
+focus_previous = NodePath("../../MasterVolumeHBox/VolumeSlider")
+value = 100.0
+
+[node name="VolumeLabel" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MusicVolumeHBox"]
+margin_left = 548.0
+margin_right = 960.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "(100 %)"
+
+[node name="MuteMusicCheckBox" type="CheckBox" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_left = 408.0
+margin_top = 96.0
+margin_right = 551.018
+margin_bottom = 148.6
+focus_neighbour_top = NodePath("../MusicVolumeHBox/VolumeSlider")
+focus_neighbour_bottom = NodePath("../SFXVolumeHBox/VolumeSlider")
+focus_next = NodePath("../SFXVolumeHBox/VolumeSlider")
+focus_previous = NodePath("../MasterVolumeHBox/VolumeSlider")
+size_flags_horizontal = 4
+text = "MUTE_MUSIC"
+align = 1
+
+[node name="SFXVolumeHBox" type="HBoxContainer" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_top = 164.0
+margin_right = 960.0
+margin_bottom = 180.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SFXVolumeHBox"]
+margin_right = 412.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "SFX"
+align = 2
+
+[node name="VolumeSlider" type="HSlider" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SFXVolumeHBox"]
+margin_left = 416.0
+margin_right = 544.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 128, 0 )
+focus_neighbour_top = NodePath("../../MuteMusicCheckBox")
+focus_neighbour_bottom = NodePath("../../MuteSFXCheckBox")
+focus_next = NodePath("../../MuteSFXCheckBox")
+focus_previous = NodePath("../../MuteMusicCheckBox")
+value = 100.0
+
+[node name="VolumeLabel" type="Label" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SFXVolumeHBox"]
+margin_left = 548.0
+margin_right = 960.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "(100 %)"
+
+[node name="MuteSFXCheckBox" type="CheckBox" parent="TabContainer/SettingsTab/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+margin_left = 418.0
+margin_top = 196.0
+margin_right = 541.018
+margin_bottom = 248.6
+focus_neighbour_top = NodePath("../SFXVolumeHBox/VolumeSlider")
+focus_neighbour_bottom = NodePath("../../../../BackButton")
+focus_next = NodePath("../../../../BackButton")
+focus_previous = NodePath("../SFXVolumeHBox/VolumeSlider")
+size_flags_horizontal = 4
+text = "MUTE_SFX"
+align = 1
+
+[node name="BackButton" type="Button" parent="TabContainer/SettingsTab/VBoxContainer"]
+margin_left = 432.0
+margin_top = 484.0
+margin_right = 528.0
+margin_bottom = 536.6
+rect_min_size = Vector2( 96, 0 )
+focus_neighbour_top = NodePath("../ScrollContainer/VBoxContainer/AudioContainer/MuteSFXCheckBox")
+focus_neighbour_bottom = NodePath("../ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeHBox/VolumeSlider")
+focus_next = NodePath("../ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeHBox/VolumeSlider")
+focus_previous = NodePath("../ScrollContainer/VBoxContainer/AudioContainer/MuteSFXCheckBox")
+size_flags_horizontal = 4
+text = "BACK"

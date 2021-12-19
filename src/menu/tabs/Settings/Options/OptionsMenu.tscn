@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/menu/tabs/Settings/Options/RebindableAction.tscn" type="PackedScene" id=2]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchor_right = 1.0
+margin_bottom = 60.0
+mouse_filter = 1
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HotkeysContainer" type="HBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 40.0
+custom_constants/separation = 80
+
+[node name="Label2" type="Label" parent="HotkeysContainer"]
+margin_top = 3.0
+margin_right = 123.0
+margin_bottom = 17.0
+text = "EGGSBY CONTROLS"
+
+[node name="Left" type="HBoxContainer" parent="HotkeysContainer"]
+margin_left = 203.0
+margin_right = 265.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/Left"]
+margin_top = 3.0
+margin_right = 28.0
+margin_bottom = 17.0
+text = "LEFT"
+
+[node name="RebindableAction" parent="HotkeysContainer/Left" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_right = 62.0
+keep_pressed_outside = true
+text = "Up"
+align = 2
+action = "ui_left"
+
+[node name="Right" type="HBoxContainer" parent="HotkeysContainer"]
+margin_left = 345.0
+margin_right = 419.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/Right"]
+margin_top = 3.0
+margin_right = 40.0
+margin_bottom = 17.0
+text = "RIGHT"
+
+[node name="RebindableAction" parent="HotkeysContainer/Right" instance=ExtResource( 2 )]
+margin_left = 44.0
+margin_right = 74.0
+keep_pressed_outside = true
+text = "Up"
+align = 2
+action = "ui_right"
+
+[node name="ShowHide" type="HBoxContainer" parent="HotkeysContainer"]
+margin_left = 499.0
+margin_right = 602.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/ShowHide"]
+margin_top = 3.0
+margin_right = 78.0
+margin_bottom = 17.0
+text = "SHOW/HIDE"
+
+[node name="RebindableAction" parent="HotkeysContainer/ShowHide" instance=ExtResource( 2 )]
+margin_left = 82.0
+margin_right = 103.0
+keep_pressed_outside = true
+text = "B"
+align = 2
+action = "ui_bestiary"

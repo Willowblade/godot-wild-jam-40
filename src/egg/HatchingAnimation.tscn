@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/eggs/chicken-top.png" type="Texture" id=2]
 [ext_resource path="res://assets/objects/lights/light.png" type="Texture" id=3]
 [ext_resource path="res://assets/creature/chick.png" type="Texture" id=4]
-[ext_resource path="res://HatchingAnimation.gd" type="Script" id=5]
+[ext_resource path="res://src/egg/HatchingAnimation.gd" type="Script" id=5]
 [ext_resource path="res://src/egg/Notification.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=2]

@@ -11,10 +11,12 @@ onready var sad_texture = preload("res://assets/eggs/notification/sad.png")
 onready var bad_music_texture = preload("res://assets/eggs/notification/bad-music.png")
 onready var bad_base_texture = preload("res://assets/eggs/notification/bad-base.png")
 onready var music_texture = preload("res://assets/eggs/notification/music.png")
+onready var annoyed_texture = preload("res://assets/eggs/notification/annoyed.png")
 
 onready var mapping = {
 	"sad": sad_texture,
 	"happy": happy_texture,
+	"annoyed": annoyed_texture,
 	"superhappy": super_happy_texture,
 	"hot": fire_texture,
 	"cold": ice_texture,

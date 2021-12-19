@@ -8,14 +8,24 @@ var temperature = 40
 var base = "pillow"
 var music = null
 
-var egg_growth = 0.0
 
-var new_egg = 0.0
 
 # ui registration
 var bestiary: Bestiary = null
 var egg_picker: EggPicking = null
 var incubator: Incubator = null
+
+# egg state
+enum egg_states {IDLE, FALLEN}
+var egg_growth = 0.0
+var new_egg = 0.0
+var egg_state = egg_states.IDLE
+
+
+func reset():
+	bestiary = null
+	egg_picker = null
+	incubator = null
 
 func _ready():
 	pass
@@ -28,7 +38,11 @@ func _process(delta):
 		music = incubator.radio.get_song()
 
 		if incubator.egg and incubator.egg.visible:
-			egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate
+			if incubator.egg.can_grow():
+				egg_growth += delta * incubator.egg.get_growth_happiness_rate() * incubator.egg.growth_rate
+				incubator.egg.set_growing()
+			else:
+				incubator.egg.stop_growing()
 
 			if egg_growth >= 100.0:
 				incubator.egg_finished()

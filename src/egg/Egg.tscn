@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/egg/Egg.gd" type="Script" id=1]
 [ext_resource path="res://assets/eggs/chode-egg.png" type="Texture" id=2]
 [ext_resource path="res://src/egg/Notification.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=4]
+resource_name = "pulse"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "wiggle"
@@ -20,6 +37,22 @@ tracks/0/keys = {
 "values": [ 0.0, 30.0, 0.0, -30.0, 0.0 ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "wiggle_small"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 15.0, 0.0, -15.0, 0.0 ]
+}
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11, 16 )
 
@@ -28,12 +61,15 @@ script = ExtResource( 1 )
 clickable_texture_path = NodePath("Graphics/Sprite")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/pulse = SubResource( 4 )
 anims/wiggle = SubResource( 1 )
+anims/wiggle_small = SubResource( 3 )
 
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Graphics"]
 position = Vector2( 0, -15 )
+scale = Vector2( 1.01611, 1.01611 )
 texture = ExtResource( 2 )
 
 [node name="Notification" parent="Graphics" instance=ExtResource( 3 )]

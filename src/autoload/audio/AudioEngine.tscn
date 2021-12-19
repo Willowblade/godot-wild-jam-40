@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/autoload/audio/audio_engine.gd" type="Script" id=1]
-[ext_resource path="res://src/autoload/audio/effects.gd" type="Script" id=3]
+[ext_resource path="res://src/autoload/audio/AudioEngine.gd" type="Script" id=1]
+[ext_resource path="res://src/autoload/audio/Effects.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "switch_1"
@@ -65,15 +65,11 @@ MAX_SIMULTANEOUS_EFFECTS = 20
 
 [node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
+bus = "Music"
 
 [node name="SecondBackgroundPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
-
-[node name="AmbiancePlayer" type="AudioStreamPlayer" parent="."]
-autoplay = true
-
-[node name="DialoguePlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -6.0
+bus = "Music"
 
 [node name="Effects" type="Node" parent="."]
 script = ExtResource( 3 )

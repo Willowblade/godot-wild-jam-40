@@ -3,6 +3,7 @@ class_name Egg
 
 onready var sprite = $Graphics/Sprite
 onready var notification = $Graphics/Notification
+onready var animation_player = $AnimationPlayer
 
 export var static_egg = false
 
@@ -34,6 +35,8 @@ onready var egg_textures = {
 	"octosquid": preload("res://assets/eggs/chode-egg.png"),
 }
 
+var growing = false
+
 
 func set_octosquid_egg():
 	GlobalData.egg_growth = 0.0
@@ -51,36 +54,46 @@ func set_octosquid_egg():
 	music_tolerance = ["jazz"]
 	temperature_down_close_to_hatching = true
 #
-#func set_chicken_egg():
-#	GlobalData.egg_growth = 0.0
-#	growth_rate = 8.0
-#	type = "chicken"
-#	sprite.texture = egg_textures.chicken
-#	self.reset()
-#	humidity_requirement = 60
-#	humidity_tolerance = 40
-#	temperature_requirement = 40
-#	temperature_tolerance = 8
-#	underground_requirement = ["nest"]
-#	underground_tolerance = []
-#	music_requirement = ["classical"]
-#	music_tolerance = ["jazz"]
-#	temperature_down_close_to_hatching = true
 func set_chicken_egg():
 	GlobalData.egg_growth = 0.0
-	growth_rate = 30.0
+	growth_rate = 8.0
 	type = "chicken"
-	sprite.texture = egg_textures[type]
+	sprite.texture = egg_textures.chicken
 	self.reset()
-	humidity_requirement = 50
-	humidity_tolerance = 100
-	temperature_requirement = 35
-	temperature_tolerance = 30
-	underground_requirement = ["nest", "pillow"]
+	humidity_requirement = 60
+	humidity_tolerance = 40
+	temperature_requirement = 40
+	temperature_tolerance = 8
+	underground_requirement = ["nest"]
 	underground_tolerance = []
-	music_requirement = ["classical", "jazz"]
+	music_requirement = ["classical"]
 	music_tolerance = ["jazz"]
-	temperature_down_close_to_hatching = false
+	temperature_down_close_to_hatching = true
+#
+#func set_chicken_egg():
+#	GlobalData.egg_growth = 0.0
+#	growth_rate = 30.0
+#	type = "chicken"
+#	sprite.texture = egg_textures[type]
+#	self.reset()
+#	humidity_requirement = 50
+#	humidity_tolerance = 100
+#	temperature_requirement = 35
+#	temperature_tolerance = 30
+#	underground_requirement = ["nest", "pillow"]
+#	underground_tolerance = []
+#	music_requirement = ["classical", "jazz"]
+#	music_tolerance = ["jazz"]
+#	temperature_down_close_to_hatching = false
+
+func set_growing():
+	if !growing:
+		growing = true
+
+func stop_growing():
+	if growing:
+		if animation_player.is_playing() and animation_player.current_animation == "pulse":
+			animation_player.stop()
 
 func _ready():
 	set_chicken_egg()
@@ -92,6 +105,11 @@ func _ready():
 
 func _process(delta: float):
 	$Graphics/Notification.rotation_degrees = -$Graphics.rotation_degrees
+
+
+	if growing:
+		if not animation_player.is_playing():
+			animation_player.play("pulse", -1, 0.5)
 
 
 # possibilities are
@@ -114,6 +132,10 @@ func get_egg_mood():
 	var tolerances = []
 	var temperature = GlobalData.temperature
 
+	# shortcut when egg has fallen
+	if GlobalData.egg_state == GlobalData.egg_states.FALLEN:
+		return "sad"
+
 	# set this temperature to off temperature for the end
 	if GlobalData.egg_growth > 90 and temperature_down_close_to_hatching:
 		temperature_requirement = 10.0
@@ -133,7 +155,6 @@ func get_egg_mood():
 	var base = GlobalData.base
 	if not base in underground_requirement:
 		if not base in underground_tolerance:
-			print("bad base ", base)
 			annoyances.append("bad-base")
 		else:
 			tolerances.append("base")
@@ -146,7 +167,6 @@ func get_egg_mood():
 				annoyances.append("music")
 		else:
 			if not music in music_tolerance:
-				print("bad music ", music)
 				annoyances.append("bad-music")
 			else:
 				tolerances.append("music")
@@ -159,9 +179,51 @@ func get_egg_mood():
 		else:
 			return "superhappy"
 
+func get_annoyances():
+	var annoyances = []
+
+	var temperature = GlobalData.temperature
+
+	# set this temperature to off temperature for the end
+	if GlobalData.egg_growth > 90 and temperature_down_close_to_hatching:
+		temperature_requirement = 10.0
+		temperature_tolerance = 1.0
+
+	if temperature < temperature_requirement - temperature_tolerance / 2:
+		annoyances.append("cold")
+	elif temperature > temperature_requirement + temperature_tolerance / 2:
+		annoyances.append("hot")
+
+	var humidity = GlobalData.humidity
+	if humidity < humidity_requirement - humidity_tolerance / 2:
+		annoyances.append("dry")
+	elif humidity > humidity_requirement + humidity_tolerance / 2:
+		annoyances.append("humid")
+
+	var base = GlobalData.base
+	if not base in underground_requirement:
+		if not base in underground_tolerance:
+			annoyances.append("bad-base")
+
+	var music = GlobalData.music
+	if not music in music_requirement:
+		# allow wanting silence when having no actual use
+		if music == null:
+			if music_requirement.size() != 0:
+				annoyances.append("music")
+		else:
+			if not music in music_tolerance:
+				annoyances.append("bad-music")
+
+	return annoyances
+
 func _on_egg_click():
 	pass
 
 func wiggle():
-	$AnimationPlayer.play("wiggle")
-	$Graphics/Notification.activate(get_egg_mood())
+	animation_player.play("wiggle")
+	notification.activate(get_egg_mood())
+
+func wiggle_small():
+	animation_player.play("wiggle_small")
+	notification.activate("sad")
