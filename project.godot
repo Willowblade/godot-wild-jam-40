@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/egg/Egg.gd"
 }, {
+"base": "Control",
+"class": "EggPicking",
+"language": "GDScript",
+"path": "res://src/ui/EggPicking.gd"
+}, {
 "base": "Node2D",
 "class": "Incubator",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "Bestiary": "",
 "ClickableTexture": "",
 "Egg": "",
+"EggPicking": "",
 "Incubator": "",
 "Lamp": "",
 "Moisturizer": "",

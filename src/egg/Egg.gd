@@ -20,6 +20,7 @@ var humidity_tolerance = 40
 
 var temperature_requirement = 40
 var temperature_tolerance = 8
+var temperature_down_close_to_hatching = true
 
 var underground_requirement = ["nest"]
 var underground_tolerance = []
@@ -30,15 +31,15 @@ var music_tolerance = [""]
 
 onready var egg_textures = {
 	"chicken": preload("res://assets/eggs/chicken.png"),
-	"chode": preload("res://assets/eggs/chode-egg.png"),
+	"octosquid": preload("res://assets/eggs/chode-egg.png"),
 }
 
 
-func set_chode_egg():
+func set_octosquid_egg():
 	GlobalData.egg_growth = 0.0
 	growth_rate = 3.0
-	type = "chode"
-	sprite.texture = egg_textures.chode
+	type = "octosquid"
+	sprite.texture = egg_textures[type]
 	self.reset()
 	humidity_requirement = 40
 	humidity_tolerance = 50
@@ -48,22 +49,38 @@ func set_chode_egg():
 	underground_tolerance = []
 	music_requirement = ["metal"]
 	music_tolerance = ["jazz"]
-
+	temperature_down_close_to_hatching = true
+#
+#func set_chicken_egg():
+#	GlobalData.egg_growth = 0.0
+#	growth_rate = 8.0
+#	type = "chicken"
+#	sprite.texture = egg_textures.chicken
+#	self.reset()
+#	humidity_requirement = 60
+#	humidity_tolerance = 40
+#	temperature_requirement = 40
+#	temperature_tolerance = 8
+#	underground_requirement = ["nest"]
+#	underground_tolerance = []
+#	music_requirement = ["classical"]
+#	music_tolerance = ["jazz"]
+#	temperature_down_close_to_hatching = true
 func set_chicken_egg():
 	GlobalData.egg_growth = 0.0
-	growth_rate = 8.0
+	growth_rate = 30.0
 	type = "chicken"
-	sprite.texture = egg_textures.chicken
+	sprite.texture = egg_textures[type]
 	self.reset()
-	humidity_requirement = 60
-	humidity_tolerance = 40
-	temperature_requirement = 40
-	temperature_tolerance = 8
-	underground_requirement = ["nest"]
+	humidity_requirement = 50
+	humidity_tolerance = 100
+	temperature_requirement = 35
+	temperature_tolerance = 30
+	underground_requirement = ["nest", "pillow"]
 	underground_tolerance = []
-	music_requirement = ["classical"]
+	music_requirement = ["classical", "jazz"]
 	music_tolerance = ["jazz"]
-
+	temperature_down_close_to_hatching = false
 
 func _ready():
 	set_chicken_egg()
@@ -96,6 +113,12 @@ func get_egg_mood():
 	var annoyances = []
 	var tolerances = []
 	var temperature = GlobalData.temperature
+
+	# set this temperature to off temperature for the end
+	if GlobalData.egg_growth > 90 and temperature_down_close_to_hatching:
+		temperature_requirement = 10.0
+		temperature_tolerance = 1.0
+
 	if temperature < temperature_requirement - temperature_tolerance / 2:
 		annoyances.append("cold")
 	elif temperature > temperature_requirement + temperature_tolerance / 2:
@@ -119,7 +142,7 @@ func get_egg_mood():
 	if not music in music_requirement:
 		# allow wanting silence when having no actual use
 		if music == null:
-			if music_tolerance.size() != 0:
+			if music_requirement.size() != 0:
 				annoyances.append("music")
 		else:
 			if not music in music_tolerance:

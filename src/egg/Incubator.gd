@@ -5,7 +5,7 @@ var dragging: Node2D = null
 var egg_state = 'idle'
 
 onready var radio = $Radio
-onready var egg = $EggContainer/Egg
+onready var egg: Egg = $EggContainer/Egg
 onready var lamp = $Lamp
 onready var egg_area =  $EggContainer/Egg/Area2D
 onready var placeholder_egg = $EggContainer/EggPlaceholder
@@ -13,6 +13,8 @@ onready var placeholder_egg = $EggContainer/EggPlaceholder
 onready var moisturizer = $MoisturizerContainer/Moisturizer
 onready var moisturizer_placeholder = $MoisturizerContainer/MoisturizerPlaceholder
 onready var moisturizer_area =  $MoisturizerContainer/Moisturizer/MoisturizerArea
+
+onready var hatching_animation = $HatchingAnimation
 
 onready var nest = $Nest
 
@@ -38,17 +40,22 @@ const OFF_TEMPERATURE = 10.0
 const WIGGLE_TIME = 8.0
 const WIGGLE_VARIATION = 2.0
 
+var waiting_for_hatch_animation = true
+
 
 func _ready():
 	$WiggleTimer.connect("timeout", self, "_on_wiggle_timer_timeout")
 	$WiggleTimer.wait_time = WIGGLE_TIME + (0.5 - randf()) * WIGGLE_VARIATION
 	$WiggleTimer.start()
 
+	$HatchingAnimation.connect("done", self, "_on_hatching_animation_done")
+
 	GlobalData.incubator = self
 	egg_state = egg_states.IDLE
 	egg.global_position = egg_start_location
 	egg.rotation_degrees = 0.0
 	placeholder_egg.global_position = egg_start_location
+
 	update_bases()
 
 func update_bases():
@@ -93,8 +100,8 @@ func _process(delta):
 	if humidity < 0.0:
 		humidity =  min(max(0.0, humidity), 100.0)
 
-	if Input.is_action_just_pressed("ui_accept"):
-		egg_fall()
+#	if Input.is_action_just_pressed("ui_accept"):
+#		egg_fall()
 
 	if dragging:
 		if dragging is Lamp:
@@ -235,8 +242,23 @@ func _on_wiggle_timer_timeout():
 	$WiggleTimer.start()
 
 
-func egg_finished():
-	if egg.type == "chicken":
-		egg.set_chode_egg()
-	elif egg.type == "chode":
+func start_new_egg(new_egg_type: String):
+	if new_egg_type == "octosquid":
+		egg.set_octosquid_egg()
+	elif new_egg_type == "chicken":
 		egg.set_chicken_egg()
+
+	egg.show()
+
+
+func egg_finished():
+	egg.hide()
+	hatching_animation.set_creature(egg.type)
+	hatching_animation.play()
+
+
+func _on_hatching_animation_done():
+	hatching_animation.check_for_enter = false
+	hatching_animation.hide()
+	hatching_animation.set_process_input(false)
+	GlobalData.activate_egg_picker()
